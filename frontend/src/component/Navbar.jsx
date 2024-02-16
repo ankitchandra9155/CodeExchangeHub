@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { Menu, X, ChevronRight } from 'lucide-react'
 import Avatar from "../assets/man.png"
 import { useSelector } from 'react-redux'
-import { search } from '../service/searchService'
 import { useDispatch } from 'react-redux'
+import { getSearchValue } from './Auth/authSlice'
 
 export default function Navbar() {
   const dispatch=useDispatch();
@@ -18,13 +18,11 @@ export default function Navbar() {
 
   const handleSearch=async()=>{
     
-    const {jsonQuestionData,totalPages}= await search(searchValue,0,token);
-    console.log(jsonQuestionData);
-  }
-
-  const handleShow=()=>{
+    // const {jsonQuestionData,totalPages}= await search(searchValue,0,token);
+    setSearchValue("")
     dispatch(getSearchValue(searchValue))
   }
+
 
 
   return (
@@ -51,6 +49,7 @@ export default function Navbar() {
           <input
             className="flex h-10 w-[550px] rounded-md bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
             type="text"
+            value={searchValue}
             placeholder="Search"
             onChange={(e)=>{setSearchValue(e.target.value)}}
           ></input>
@@ -59,7 +58,7 @@ export default function Navbar() {
           <button onClick={handleSearch}>
             Search
             </button>
-            <button onClick={handleShow}>show</button>
+            {/* <button onClick={handleShow}>show</button> */}
         </div>
         <div className="ml-3 mt-4 flex items-center space-x-2">
           <img

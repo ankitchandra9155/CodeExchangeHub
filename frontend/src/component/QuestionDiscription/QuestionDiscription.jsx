@@ -3,6 +3,8 @@ import AnswersComponent from './AnswersComponent'
 import PostAnswer from './PostAnswer'
 import { useSelector } from 'react-redux'
 import { questionDescription } from '../../service/questionDescriptionService'
+import Loading from '../LoadingComponent/Loading'
+import LikeButton from '../LikesComponent/LikeButton'
 export default function QuestionDiscription({ setAllQuestionVisable, setQuestionDescription, setIsDashBoardVisible }) {
     const token = useSelector((state) => state.auth.token);
     const userId = useSelector((state) => state.auth.userId);
@@ -47,10 +49,12 @@ export default function QuestionDiscription({ setAllQuestionVisable, setQuestion
     return (
 
         <section className="px-2">
-            {loading ? (<p>Loading...</p>) : (
+            {loading ? (<Loading/>) : (
                 <div className="mx-auto max-w-7xl py-5">
                     <div>
                         <div className="max-w-7xl">
+                            <LikeButton/>
+                            
                             <h1 className="text-2xl font-bold text-black">{title}</h1>
                             <p className="mt-4 text-base leading-6 tracking-wide text-black">
                                 {body}

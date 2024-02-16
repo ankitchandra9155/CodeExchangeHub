@@ -15,7 +15,7 @@ export const search=async(title,pageNumber,token)=>{
     const data=await response.json()
     const jsonQuestionData= data.questionDtoList;
     const totalPages= data.totalPages;
-    console.log(jsonQuestionData);
+    console.warn(jsonQuestionData);
     return {jsonQuestionData,totalPages};
 
 }

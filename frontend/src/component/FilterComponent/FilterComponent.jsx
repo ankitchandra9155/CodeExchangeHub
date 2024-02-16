@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { Plus } from 'lucide-react'
+import ReactLoading from 'react-loading'
 // import CardComponent from '../QuestionComponent/QuestionCardComponent'
+import { search } from '../../service/searchService'
 import { Pagination } from '../Pagination'
 import AllquestionComponents from '../QuestionComponent/AllquestionComponents'
 import QuestionDiscription from '../QuestionDiscription/QuestionDiscription'
 import PostQuestion from '../PostQuestion/PostQuestion'
 import { pagination } from '../../service/paginationService'
 import { myQuestion } from '../../service/myQuestionService'
-import { useSelector } from 'react-redux'
+import Loading from '../LoadingComponent/Loading'
+import { useDispatch, useSelector } from 'react-redux'
+import { getSearchValue } from '../Auth/authSlice'
 
 export default function FilterComponent() {
   const [loading, setLoading] = useState(true)
@@ -25,6 +29,17 @@ export default function FilterComponent() {
   const searchValue=useSelector((state)=>state.auth.searchValue);
   // console.log("Page number is ", pageNumber);
   console.log("Search Value is ",searchValue);
+
+  const handleSearch=async()=>{
+    if(searchValue!="")
+    {
+      const {jsonQuestionData,totalPages}= await search(searchValue,0,token);
+      setDisplayQuestion(jsonQuestionData)
+      setTotalPages(totalPages)
+      setIsDashBoardVisible(false)
+      // useDispatch(getSearchValue(""))
+    }
+  }
 
   const postQuestionVisable = () => {
     if (allQuestionVisable)
@@ -105,8 +120,8 @@ export default function FilterComponent() {
 
   
   useEffect(()=>{
-
-  },[])
+    handleSearch()
+  },[searchValue])
 
   return (
     <>
@@ -134,17 +149,20 @@ export default function FilterComponent() {
                   </span>
                 </div>
               </div>
-              {loading ? (<p>Loading....</p>) : (
               <div className="h-[690px] w-full rounded-lg border-2 border-dashed px-2 lg:col-span-9 lg:min-h-min overflow-y-auto">
+              {loading ? (<Loading/>) : 
+              (
+                <span>
                 {allQuestionVisable && <AllquestionComponents setAllQuestionVisable={setAllQuestionVisable} setQuestionDescription={setQuestionDescription} displayQuestion={displayQuestion} />}
                 {questionDescription && <QuestionDiscription setAllQuestionVisable={setAllQuestionVisable} setQuestionDescription={setQuestionDescription} setIsDashBoardVisible={setIsDashBoardVisible}/>}
                 {postQuestion && <PostQuestion setPostQuestion={setPostQuestion} />}
+                </span>
+              )}
                 
               </div>
-              )}
 
             </div>
-            {loading ? (<p></p>) : (
+            {loading ? (<Loading/>) : (
             <div className='flex items-center justify-center  v-screen'>
               <Pagination totalPages={totalPages} />
             </div>
