@@ -53,7 +53,7 @@ export default function QuestionDiscription({ setAllQuestionVisable, setQuestion
                 <div className="mx-auto max-w-7xl py-5">
                     <div>
                         <div className="max-w-7xl">
-                            <LikeButton/>
+                            {/* <LikeButton/> */}
                             
                             <h1 className="text-2xl font-bold text-black">{title}</h1>
                             <p className="mt-4 text-base leading-6 tracking-wide text-black">

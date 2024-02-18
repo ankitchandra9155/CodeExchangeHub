@@ -29,18 +29,27 @@ export default function FilterComponent() {
   const searchValue=useSelector((state)=>state.auth.searchValue);
   // console.log("Page number is ", pageNumber);
   console.log("Search Value is ",searchValue);
-
+  
   const handleSearch=async()=>{
     if(searchValue!="")
     {
-      const {jsonQuestionData,totalPages}= await search(searchValue,0,token);
-      setDisplayQuestion(jsonQuestionData)
-      setTotalPages(totalPages)
-      setIsDashBoardVisible(false)
+      setLoading(true)
+      setTimeout(async()=>{
+        const {jsonQuestionData,totalPage}= await search(searchValue,0,token);
+        console.log("searchData",jsonQuestionData);
+        setDisplayQuestion(jsonQuestionData)
+        setTotalPages(totalPage)
+        // setIsDashBoardVisible(false)
+        setLoading(false)
+      },200)
       // useDispatch(getSearchValue(""))
     }
   }
 
+  useEffect(()=>{
+     
+  },[displayQuestion])
+  
   const postQuestionVisable = () => {
     if (allQuestionVisable)
       setAllQuestionVisable(false)
@@ -72,6 +81,7 @@ export default function FilterComponent() {
       setMyQuestionVisibility(false)
       setIsDashBoardVisible(true)
     }
+    
     
   }
 
@@ -116,7 +126,7 @@ export default function FilterComponent() {
       }, 200);
     }
     fetchData();
-  }, [pageNumber,allQuestionVisable,loading,isDashBoardVisible,questionDescription]);
+  }, [pageNumber,allQuestionVisable,isDashBoardVisible,questionDescription]);
 
   
   useEffect(()=>{
