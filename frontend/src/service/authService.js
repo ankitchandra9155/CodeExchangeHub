@@ -1,7 +1,8 @@
+import apiUrl from "../component/UtilFunction/apiUrl";
 export const loginService = async (loginData) => {
     let isError=false;
     let responseData={}
-    const response = await fetch("http://localhost:8080/authentication", {
+    const response = await fetch(apiUrl+"/authentication", {
         method: 'Post',
         headers: {
             'Content-Type': 'application/json',
@@ -29,7 +30,7 @@ export const loginService = async (loginData) => {
 }
 
 export const signUpService = async (signUpData) => {
-    const repsonse = await fetch("http://localhost:8080/signup", {
+    const repsonse = await fetch(apiUrl+"/signup", {
         method: 'Post',
         headers: {
             'Content-Type': 'application/json',
