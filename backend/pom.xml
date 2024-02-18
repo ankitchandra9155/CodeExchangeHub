@@ -11,7 +11,7 @@
 	<groupId>com.CodeExchangeHub</groupId>
 	<artifactId>CodeExchangeHub</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>CodeExchangeHub</name>
 	<description>Backend For CodeExchangeHub</description>
 	<properties>
