@@ -2,7 +2,7 @@ import apiUrl from "../component/UtilFunction/apiUrl";
 export const pagination=async(pageNumber,token)=>{
 
     console.log("Ankittttttt");
-    const response=await fetch(apiUrl`/api/questions/${pageNumber}`,{
+    const response=await fetch(apiUrl+`/api/questions/${pageNumber}`,{
         method:"GET",
         headers:{
             "Authorization":token,
