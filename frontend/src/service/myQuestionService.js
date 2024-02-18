@@ -1,7 +1,8 @@
+import apiUrl from "../component/UtilFunction/apiUrl";
 export const myQuestion=async(userId,pageNumber,token)=>{
 
     console.log("Inside My Question service");
-    const response=await fetch(`http://localhost:8080/api/questions/${userId}/${pageNumber}`,{
+    const response=await fetch(apiUrl+`/api/questions/${userId}/${pageNumber}`,{
         method:"GET",
         headers:{
             "Authorization":token,

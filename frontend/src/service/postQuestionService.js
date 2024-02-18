@@ -1,9 +1,10 @@
+import apiUrl from "../component/UtilFunction/apiUrl";
 import { useSelector } from "react-redux";
 
 export const postQuestion=async(postQuestionData,token)=>{
     let isError=false;
     console.log("Bearer "+token.replace(/^Bearer\s/, ''));
-    const response= await fetch("http://localhost:8080/api/question",{
+    const response= await fetch(apiUrl+"/api/question",{
         method:'Post',
         headers:{
             'Content-Type': 'application/json',

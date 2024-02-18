@@ -1,7 +1,8 @@
+import apiUrl from "../component/UtilFunction/apiUrl";
 export const search=async(title,pageNumber,token)=>{
 
     
-    const response=await fetch(`http://localhost:8080/api/search/${title}/${pageNumber}`,{
+    const response=await fetch(apiUrl+`/api/search/${title}/${pageNumber}`,{
         method:"GET",
         headers:{
             "Authorization":token,

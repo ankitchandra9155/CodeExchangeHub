@@ -1,9 +1,10 @@
+import apiUrl from "../component/UtilFunction/apiUrl";
 export const questionDescription=async(token,userId,questionId)=>{
     console.log("----------------Question Desc--------------");
     console.log(token);
     console.log(questionId);
     console.log(userId);
-    const response=await fetch(`http://localhost:8080/api/question/${questionId}/${userId}`,{
+    const response=await fetch(apiUrl+`/api/question/${questionId}/${userId}`,{
         method:"GET",
         headers:{
             "Authorization":token,

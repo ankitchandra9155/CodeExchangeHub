@@ -1,7 +1,8 @@
+import apiUrl from "../component/UtilFunction/apiUrl";
 export const postAnswer=async(token,body,questionId,userId)=>{
 
     console.log("Post Answer Service");
-    const response=await fetch(`http://localhost:8080/api/answer`,{
+    const response=await fetch(apiUrl+`/api/answer`,{
         method:"POST",
         headers:{
             "Authorization":token,
